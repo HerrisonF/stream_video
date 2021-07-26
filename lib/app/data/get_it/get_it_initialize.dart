@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:teste_seventh/app/controller/homeController/homeController.dart';
 import 'package:teste_seventh/app/controller/login_controller/login_controller.dart';
 import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
 
@@ -10,5 +11,6 @@ abstract class GetItInitialize {
     GetIt.I.registerSingleton(DioClient());
     GetIt.I.registerSingleton(MasterPageController());
     GetIt.I.registerSingleton(LoginController());
+    GetIt.I.registerSingleton(HomeController());
   }
 }

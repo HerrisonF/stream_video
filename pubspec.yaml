@@ -19,6 +19,9 @@ dependencies:
   dio: ^3.0.10
   flutter_svg: ^0.22.0
   shared_preferences: ^2.0.4
+  video_player:
+  chewie:
+  flutter_plugin_android_lifecycle: ^1.0.4
 
 dev_dependencies:
   flutter_test:

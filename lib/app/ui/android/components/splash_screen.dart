@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
+import 'package:teste_seventh/app/ui/android/pages/home_page/home_page.dart';
 import 'package:teste_seventh/app/ui/android/pages/login_page/login_page.dart';
-import 'package:teste_seventh/app/ui/android/pages/master_page/master_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _pushToHome() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => MasterPage()),
+      MaterialPageRoute(builder: (context) => HomePage()),
     );
   }
 

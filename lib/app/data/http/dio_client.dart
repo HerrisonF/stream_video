@@ -12,8 +12,9 @@ class DioClient {
   static const int _UNAUTHORIZED = 401;
 
   DioClient() {
-    BaseOptions options =
-        BaseOptions(baseUrl: "https://mobiletest.seventh.com.br", responseType: ResponseType.json);
+    BaseOptions options = BaseOptions(
+        baseUrl: "https://mobiletest.seventh.com.br",
+        responseType: ResponseType.json);
     instance = Dio(options);
     instance.interceptors.clear();
     instance.interceptors.add(HeadersInterceptor(dioClient: instance));
@@ -27,14 +28,36 @@ class DioClient {
           data: data, queryParameters: queryParameters);
       log.info(' ENDPOINT $endpoint executed in ${stopwatch.elapsed}');
       stopwatch.stop();
-      if(response.statusCode == _SUCCESS){
+      if (response.statusCode == _SUCCESS) {
         return DioState(CustomState.SUCCESS, response);
-      }else if(response.statusCode == _UNAUTHORIZED){
+      } else if (response.statusCode == _UNAUTHORIZED) {
         return DioState(CustomState.UNAUTHORIZED, response);
       }
       return DioState(CustomState.BAD_REQUEST, response);
     } catch (e) {
-      print("LOGIN BAD_REQUEST: $e");
+      print("BAD_REQUEST: $e");
+      return DioState(CustomState.BAD_REQUEST, e);
+    }
+  }
+
+  Future<DioState> get(String endpoint,
+      [Map<String, dynamic> queryParameters]) async {
+    try {
+      final stopwatch = Stopwatch()..start();
+      final response = await instance.get(
+        endpoint,
+        queryParameters: queryParameters,
+      );
+      log.info(' ENDPOINT $endpoint executed in ${stopwatch.elapsed}');
+      stopwatch.stop();
+      if (response.statusCode == _SUCCESS) {
+        return DioState(CustomState.SUCCESS, response);
+      } else if (response.statusCode == _UNAUTHORIZED) {
+        return DioState(CustomState.UNAUTHORIZED, response);
+      }
+      return DioState(CustomState.BAD_REQUEST, response);
+    } catch (e) {
+      print("BAD_REQUEST: $e");
       return DioState(CustomState.BAD_REQUEST, e);
     }
   }

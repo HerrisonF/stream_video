@@ -4,7 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
 import 'package:teste_seventh/app/data/model/user.dart';
 import 'package:teste_seventh/app/data/repository/login_repository.dart';
-import 'package:teste_seventh/app/ui/android/pages/master_page/master_page.dart';
+import 'package:teste_seventh/app/ui/android/pages/home_page/home_page.dart';
 
 part 'login_controller.g.dart';
 
@@ -78,7 +78,7 @@ abstract class _LoginController with Store {
   _pushToHome(BuildContext context) {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => MasterPage(),
+        builder: (_) => HomePage(),
       ),
     );
   }
