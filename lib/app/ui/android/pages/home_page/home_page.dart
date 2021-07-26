@@ -5,15 +5,14 @@ import 'package:teste_seventh/app/controller/homeController/homeController.dart'
 import 'package:video_player/video_player.dart';
 
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-
   final HomeController homeController = GetIt.I<HomeController>();
   VideoPlayerController controller;
+  ChewieController chewieController;
 
   @override
   void initState() {
@@ -22,10 +21,26 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> initializePlayer() async {
-    controller =
-        VideoPlayerController.network(await homeController.getVideoStream('bunny'))..addListener(() {setState(() {
-          
-        });})..setLooping(true)..initialize().then((value) => controller.play());
+    controller = VideoPlayerController.network(
+        await homeController.getVideoStream('bunny'))
+      ..addListener(() {
+        setState(() {
+          //isso aqui faz o video se atualizar
+        });
+      })
+      ..setLooping(true)
+      ..initialize().then((value) {
+        createChewieController();
+        //controller.play();
+      });
+  }
+
+  void createChewieController() {
+    chewieController = ChewieController(
+      videoPlayerController: controller,
+      autoPlay: true,
+      looping: true,
+    );
   }
 
   @override
@@ -35,18 +50,19 @@ class _HomePageState extends State<HomePage> {
         children: [
           Expanded(
             child: Center(
-              child:
-                controller != null && controller.value.isInitialized ? Container(
-                  alignment: Alignment.topCenter,
-                  child: VideoPlayer(controller),
-                )  : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 20),
-                  Text('Loading'),
-                ],
-              ),
+              child: chewieController != null && chewieController.videoPlayerController.value.isInitialized
+                  ? Container(
+                      alignment: Alignment.topCenter,
+                      child: Chewie(controller: chewieController,),
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 20),
+                        Text('Loading'),
+                      ],
+                    ),
             ),
           ),
         ],
