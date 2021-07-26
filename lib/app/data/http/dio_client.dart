@@ -1,27 +1,25 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:logging/logging.dart';
 
 import 'package:teste_seventh/app/data/http/dio_interception_headers.dart';
 import 'package:teste_seventh/app/data/http/dio_state.dart';
-import 'package:teste_seventh/app/data/model/request_model.dart';
 
 class DioClient {
   Dio instance;
   final log = Logger("DioClient");
 
-  static const int _BAD_REQUEST = 400;
+  static const int _SUCCESS = 200;
+  static const int _UNAUTHORIZED = 401;
 
   DioClient() {
     BaseOptions options =
-        BaseOptions(baseUrl: "URL BASE", responseType: ResponseType.json);
+        BaseOptions(baseUrl: "https://mobiletest.seventh.com.br", responseType: ResponseType.json);
     instance = Dio(options);
     instance.interceptors.clear();
     instance.interceptors.add(HeadersInterceptor(dioClient: instance));
   }
 
-  Future<RequestModel> post(String endpoint, String data,
+  Future<DioState> post(String endpoint, String data,
       [Map<String, dynamic> queryParameters]) async {
     try {
       final stopwatch = Stopwatch()..start();
@@ -29,11 +27,15 @@ class DioClient {
           data: data, queryParameters: queryParameters);
       log.info(' ENDPOINT $endpoint executed in ${stopwatch.elapsed}');
       stopwatch.stop();
-
-      return RequestModel.fromJson(response.data, response.statusCode);
+      if(response.statusCode == _SUCCESS){
+        return DioState(CustomState.SUCCESS, response);
+      }else if(response.statusCode == _UNAUTHORIZED){
+        return DioState(CustomState.UNAUTHORIZED, response);
+      }
+      return DioState(CustomState.BAD_REQUEST, response);
     } catch (e) {
-      print("LOGIN BAD_REQUEST: ${e.toString()}");
-      return RequestModel(statusCode: _BAD_REQUEST);
+      print("LOGIN BAD_REQUEST: $e");
+      return DioState(CustomState.BAD_REQUEST, e);
     }
   }
 }

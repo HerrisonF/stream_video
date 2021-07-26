@@ -6,7 +6,7 @@ class LoginRepository {
   final LoginApiClient loginApiClient = LoginApiClient();
 
   Future<User> login(String email, String password){
-    return loginApiClient.login();
+    return loginApiClient.login(email: email, password: password);
   }
 
 }

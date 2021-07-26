@@ -13,13 +13,8 @@ class HeadersInterceptor extends Interceptor {
 
   @override
   Future<dynamic> onRequest(RequestOptions options) async {
-    final customHeaders = {"x-api-key": "CHAVE BASE"};
-    options.headers.addAll(customHeaders);
-
     log.info("uri:${options.uri}");
     log.info("baseURL:${options.baseUrl}");
-    options.headers.forEach(printHeader);
-
     log.info("dataRequest: ${options.data}");
     return super.onRequest(options);
   }
@@ -30,7 +25,6 @@ class HeadersInterceptor extends Interceptor {
 
   @override
   Future<FutureOr> onError(DioError dioError) async {
-    dioError.response.request.headers.forEach(printHeader);
     log.info("statusCode:${dioError.response.statusCode}");
     log.info("statusMessage:${dioError.response.statusMessage}");
     log.info("message ${dioError.request.path} :${dioError.message}");
