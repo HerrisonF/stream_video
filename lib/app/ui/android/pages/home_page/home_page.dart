@@ -14,7 +14,6 @@ class _HomePageState extends State<HomePage> {
 
   final HomeController homeController = GetIt.I<HomeController>();
   VideoPlayerController controller;
-  ChewieController _chewieController;
 
   @override
   void initState() {
@@ -24,16 +23,9 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> initializePlayer() async {
     controller =
-        VideoPlayerController.network(homeController.getVideoStream('bunny'));
-    await Future.wait([controller.initialize()]);
-    _createChewieController();
-  }
-
-  void _createChewieController() {
-    _chewieController = ChewieController(
-      videoPlayerController: controller,
-      autoPlay: true,
-      looping: true,);
+        VideoPlayerController.network(await homeController.getVideoStream('bunny'))..addListener(() {setState(() {
+          
+        });})..setLooping(true)..initialize().then((value) => controller.play());
   }
 
   @override
@@ -43,13 +35,11 @@ class _HomePageState extends State<HomePage> {
         children: [
           Expanded(
             child: Center(
-              child: _chewieController != null &&
-                  _chewieController
-                      .videoPlayerController.value.isInitialized
-                  ? Chewie(
-                controller: _chewieController,
-              )
-                  : Column(
+              child:
+                controller != null && controller.value.isInitialized ? Container(
+                  alignment: Alignment.topCenter,
+                  child: VideoPlayer(controller),
+                )  : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   CircularProgressIndicator(),
@@ -66,7 +56,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _chewieController.dispose();
     controller.dispose();
     super.dispose();
   }

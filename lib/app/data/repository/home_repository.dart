@@ -5,7 +5,7 @@ class HomeRepository {
   final HomeApiClient homeApiClient = HomeApiClient();
 
   Future<String> getVideoStream(String fileName) async {
-    return homeApiClient.getVideoStream(fileName: fileName);
+    return await homeApiClient.getVideoStream(fileName: fileName);
   }
 
 }

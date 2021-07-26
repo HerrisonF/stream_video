@@ -9,8 +9,8 @@ abstract class _HomeController with Store {
 
   HomeRepository homeRepository = HomeRepository();
 
-  getVideoStream(String fileName){
-    homeRepository.getVideoStream(fileName);
+  Future<String> getVideoStream(String fileName) async {
+    return await homeRepository.getVideoStream(fileName);
   }
 
 }
