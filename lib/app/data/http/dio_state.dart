@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-enum State { OK, ERROR }
+enum State { OK, BAD_REQUEST, UNAUTHORIZED }
 
 class DioState {
   final State state;
