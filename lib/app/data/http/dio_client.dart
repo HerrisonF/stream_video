@@ -28,7 +28,7 @@ class DioClient {
       final response = await instance.post(endpoint,
           data: data, queryParameters: queryParameters);
       log.info(
-          ' ::Service post time $endpoint executed in ${stopwatch.elapsed}');
+          ' ENDPOINT $endpoint executed in ${stopwatch.elapsed}');
       stopwatch.stop();
       if (response.statusCode == _OK_STATUS) {
         return DioState(State.OK, response);

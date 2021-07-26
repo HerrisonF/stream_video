@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:teste_seventh/app/ui/android/pages/master_page.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    _pushToHome();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,6 +23,14 @@ class SplashScreen extends StatelessWidget {
           child: Text("SPLASHSCREN"),
         ),
       ),
+    );
+  }
+
+  _pushToHome() async {
+    await Future.delayed(Duration(seconds: 2));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MasterPage()),
     );
   }
 }
