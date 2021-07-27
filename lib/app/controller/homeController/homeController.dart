@@ -9,8 +9,16 @@ abstract class _HomeController with Store {
 
   HomeRepository homeRepository = HomeRepository();
 
-  Future<String> getVideoStream(String fileName) async {
-    return await homeRepository.getVideoStream(fileName);
+  @observable
+  String url = "";
+
+  getVideoStream(String fileName) async {
+    setVideoStreamUrl(await homeRepository.getVideoStream(fileName));
+  }
+
+  @action
+  setVideoStreamUrl(String url){
+    this.url = url;
   }
 
 }

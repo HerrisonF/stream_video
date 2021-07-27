@@ -39,33 +39,18 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
-  final _$isPasswordValidAtom = Atom(name: '_LoginController.isPasswordValid');
+  final _$isLoadingAtom = Atom(name: '_LoginController.isLoading');
 
   @override
-  bool get isPasswordValid {
-    _$isPasswordValidAtom.reportRead();
-    return super.isPasswordValid;
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
   }
 
   @override
-  set isPasswordValid(bool value) {
-    _$isPasswordValidAtom.reportWrite(value, super.isPasswordValid, () {
-      super.isPasswordValid = value;
-    });
-  }
-
-  final _$isEmailValidAtom = Atom(name: '_LoginController.isEmailValid');
-
-  @override
-  bool get isEmailValid {
-    _$isEmailValidAtom.reportRead();
-    return super.isEmailValid;
-  }
-
-  @override
-  set isEmailValid(bool value) {
-    _$isEmailValidAtom.reportWrite(value, super.isEmailValid, () {
-      super.isEmailValid = value;
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
     });
   }
 
@@ -99,28 +84,6 @@ mixin _$LoginController on _LoginController, Store {
   }
 
   @override
-  dynamic invalidPassWord() {
-    final _$actionInfo = _$_LoginControllerActionController.startAction(
-        name: '_LoginController.invalidPassWord');
-    try {
-      return super.invalidPassWord();
-    } finally {
-      _$_LoginControllerActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic invalidEmail() {
-    final _$actionInfo = _$_LoginControllerActionController.startAction(
-        name: '_LoginController.invalidEmail');
-    try {
-      return super.invalidEmail();
-    } finally {
-      _$_LoginControllerActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic changePasswordVisibility() {
     final _$actionInfo = _$_LoginControllerActionController.startAction(
         name: '_LoginController.changePasswordVisibility');
@@ -143,12 +106,33 @@ mixin _$LoginController on _LoginController, Store {
   }
 
   @override
+  dynamic startLoading() {
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController.startLoading');
+    try {
+      return super.startLoading();
+    } finally {
+      _$_LoginControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic stopLoading() {
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController.stopLoading');
+    try {
+      return super.stopLoading();
+    } finally {
+      _$_LoginControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 user: ${user},
 showPassword: ${showPassword},
-isPasswordValid: ${isPasswordValid},
-isEmailValid: ${isEmailValid},
+isLoading: ${isLoading},
 successLogin: ${successLogin}
     ''';
   }

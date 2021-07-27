@@ -26,10 +26,8 @@ abstract class _LoginController with Store {
   bool showPassword = false;
 
   @observable
-  bool isPasswordValid = true;
+  bool isLoading = false;
 
-  @observable
-  bool isEmailValid = true;
 
   @observable
   bool successLogin = true;
@@ -40,26 +38,27 @@ abstract class _LoginController with Store {
   }
 
   @action
-  invalidPassWord() {
-    isPasswordValid = !isPasswordValid;
-  }
-
-  @action
-  invalidEmail() {
-    isEmailValid = !isEmailValid;
-  }
-
-  @action
   changePasswordVisibility() {
     showPassword = !showPassword;
   }
 
   @action
   cleanFormError(){
-    this.successLogin = true;
+    setSuccessLogin(true);
+  }
+
+  @action
+  startLoading(){
+    isLoading = true;
+  }
+
+  @action
+  stopLoading(){
+    isLoading = false;
   }
 
   void login(BuildContext context) async {
+    startLoading();
     setSuccessLogin(true);
     user = await loginRepository.login(
       emailEditingController.value.text,
@@ -68,11 +67,12 @@ abstract class _LoginController with Store {
     if (user.id.isNotEmpty) {
       masterPageController.setCurrentUser(user);
       masterPageController.persistUser();
+      stopLoading();
       _pushToHome(context);
     }else{
+      stopLoading();
       setSuccessLogin(false);
     }
-    //validar o user, validar os campos na tela, caso tudo certo, ir para Home
   }
 
   _pushToHome(BuildContext context) {

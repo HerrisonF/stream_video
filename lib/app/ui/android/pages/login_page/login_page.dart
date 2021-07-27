@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:teste_seventh/app/constants/assets.dart';
 import 'package:teste_seventh/app/constants/text_constants.dart';
 import 'package:teste_seventh/app/controller/login_controller/login_controller.dart';
@@ -10,8 +11,6 @@ import 'package:teste_seventh/app/ui/theme/app_theme.dart';
 const MESSAGE_ERROR = "Esse campo é obrigatório";
 
 final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
-final GlobalKey<FormState> _emailFormKey = GlobalKey<FormState>();
-final GlobalKey<FormState> _passwordFormKey = GlobalKey<FormState>();
 
 class LoginPage extends StatelessWidget {
   final LoginController loginController = GetIt.I<LoginController>();
@@ -24,13 +23,13 @@ class LoginPage extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 40),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height / 3,
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 20),
-                color: Colors.grey,
                 child: SvgPicture.asset(logo),
               ),
               Form(
@@ -41,13 +40,13 @@ class LoginPage extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
                       ),
-                      height: 50,
+                      height: 65,
                       width: double.infinity,
                       child: TextFormField(
+                        enabled: true,
                         controller: loginController.emailEditingController,
-                        key: _emailFormKey,
+                        textInputAction: TextInputAction.next,
                         validator: (value) {
                           if (value.toString().isEmpty) {
                             return MESSAGE_ERROR;
@@ -57,23 +56,15 @@ class LoginPage extends StatelessWidget {
                         onChanged: (value) {
                           loginController.cleanFormError();
                         },
-                        onSaved: (value) {
-                          print("TESTE");
-                        },
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.black,
                         ),
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           labelText: emailHint,
-                          labelStyle: TextStyle(
-                            color: loginController.isPasswordValid
-                                ? Colors.black
-                                : Colors.red,
-                            decorationColor: Colors.transparent,
-                            decorationStyle: TextDecorationStyle.solid,
-                          ),
+                          filled: true,
+                          fillColor: Colors.white,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
@@ -85,16 +76,17 @@ class LoginPage extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
                       ),
-                      height: 50,
+                      height: 65,
                       width: double.infinity,
                       child: Observer(
                         builder: (_) {
                           return TextFormField(
+                            keyboardType: TextInputType.text,
+                            enabled: true,
+                            textInputAction: TextInputAction.done,
                             controller:
                                 loginController.passwordEditingController,
-                            key: _passwordFormKey,
                             validator: (value) {
                               if (value.toString().isEmpty) {
                                 return MESSAGE_ERROR;
@@ -104,16 +96,20 @@ class LoginPage extends StatelessWidget {
                             onChanged: (value) {
                               loginController.cleanFormError();
                             },
+                            onFieldSubmitted: (value){
+                              submit(context);
+                            },
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey,
                             ),
                             obscureText: !loginController.showPassword,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
                               ),
                               suffixIcon: IconButton(
                                 onPressed: () {
@@ -131,13 +127,6 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ),
                               labelText: passwordHint,
-                              labelStyle: TextStyle(
-                                color: loginController.isPasswordValid
-                                    ? Colors.black
-                                    : Colors.red,
-                                decorationColor: Colors.transparent,
-                                decorationStyle: TextDecorationStyle.solid,
-                              ),
                             ),
                           );
                         },
@@ -149,19 +138,25 @@ class LoginPage extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: 40),
                 child: OutlinedButton(
-                  child: Text(
-                    loginButton,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                  child: Observer(
+                    builder: (_) {
+                      return loginController.isLoading
+                          ? Container(
+                              child: JumpingDotsProgressIndicator(
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Text(
+                              loginButton,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            );
+                    },
                   ),
                   onPressed: () {
-                    FocusScope.of(context).unfocus();
-                    if (_loginFormKey.currentState.validate()) {
-                      loginController.login(context);
-                    } else {
-                      loginController.setSuccessLogin(false);
-                    }
+                    submit(context);
                   },
                 ),
               ),
@@ -185,5 +180,14 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  submit(BuildContext context){
+    FocusScope.of(context).unfocus();
+    if (_loginFormKey.currentState.validate()) {
+      loginController.login(context);
+    } else {
+      loginController.setSuccessLogin(false);
+    }
   }
 }

@@ -21,7 +21,7 @@ dependencies:
   shared_preferences: ^2.0.4
   video_player:
   chewie:
-  flutter_plugin_android_lifecycle: ^1.0.4
+  progress_indicators: ^1.0.0
 
 dev_dependencies:
   flutter_test:

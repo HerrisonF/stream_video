@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:teste_seventh/app/constants/assets.dart';
 import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
 import 'package:teste_seventh/app/ui/android/pages/home_page/home_page.dart';
 import 'package:teste_seventh/app/ui/android/pages/login_page/login_page.dart';
+import 'package:teste_seventh/app/ui/theme/app_theme.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -21,11 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blueGrey,
-      child: Container(
+    return Scaffold(
+      body: Container(
+        color: appThemeData.backgroundColor,
         child: Center(
-          child: Text("SPLASHSCREN"),
+          child: SvgPicture.asset(logo, height: 40,width: 40,),
         ),
       ),
     );
