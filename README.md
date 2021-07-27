@@ -24,7 +24,7 @@ Projeto teste para [Seventh](https://www.seventh.com.br/)
 
 ### TroubleShoot
 
-Caso o código apresente problemas, rodar os comando:
+Caso o código apresente problemas, rodar os comandos:
 
 - flutter clean 
 - flutter pub get
