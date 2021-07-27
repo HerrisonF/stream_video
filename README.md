@@ -1,16 +1,31 @@
-# teste_seventh
+# Teste Seventh
 
-Teste para Seventh
+Projeto teste para [Seventh](https://www.seventh.com.br/)
 
-## Getting Started
+## Stream de Video
 
-This project is a starting point for a Flutter application.
+ O fragmento de código, após o login, inicializa um player de vídeo que fora consumido por uma API da Seventh.
+ 
+ - Por se tratar de um app teste, a verificação de conexão não foi feita.
 
-A few resources to get you started if this is your first Flutter project:
+## TECs utilizadas
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- MOBX + GETIT
+- DIO
+- SVG
+- VIDEO PLAYER
+- PREFERENCES
+- CHEWIE
+- PROGRESS INDICATORS
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## APP
+
+![](https://i.imgur.com/6PDLbW9.gif)
+
+### TroubleShoot
+
+Caso o código apresente problemas, rodar os comando:
+
+- flutter clean 
+- flutter pub get
+- flutter pub run build_runner build --delete-conflicting-outputs
