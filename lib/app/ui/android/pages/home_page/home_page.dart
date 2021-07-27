@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:teste_seventh/app/controller/homeController/homeController.dart';
 import 'package:teste_seventh/app/ui/android/components/video_player.dart';
 
+const String _FILENAME = 'bunny';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -20,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   getVideoUrl() {
-    homeController.getVideoStream('bunny');
+    homeController.getVideoStream(_FILENAME);
   }
 
   @override
@@ -34,8 +36,6 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     CircularProgressIndicator(),
-                    SizedBox(height: 20),
-                    Text('Carregando'),
                   ],
                 );
               }
