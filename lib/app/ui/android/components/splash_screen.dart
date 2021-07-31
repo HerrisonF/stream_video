@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:teste_seventh/app/constants/assets.dart';
-import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
+import 'package:teste_seventh/app/controller/master_controller/master_controller.dart';
 import 'package:teste_seventh/app/ui/android/pages/home_page/home_page.dart';
 import 'package:teste_seventh/app/ui/android/pages/login_page/login_page.dart';
 import 'package:teste_seventh/app/ui/theme/app_theme.dart';
@@ -14,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-  final MasterPageController masterPageController = GetIt.I<MasterPageController>();
+  final MasterController masterController = GetIt.I<MasterController>();
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _isUserLogged() async {
-    bool isUserLogged = await masterPageController.isUserLogged();
+    bool isUserLogged = await masterController.isUserLogged();
     if(isUserLogged){
       _pushToHome();
     }else{

@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:teste_seventh/app/data/repository/home_repository.dart';
 
-part 'homeController.g.dart';
+part 'home_controller.g.dart';
 
 class HomeController = _HomeController with _$HomeController;
 

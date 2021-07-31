@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
-import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
+import 'package:teste_seventh/app/controller/master_controller/master_controller.dart';
 import 'package:teste_seventh/app/data/model/user.dart';
 
 class HeadersInterceptor extends Interceptor {
@@ -16,8 +16,8 @@ class HeadersInterceptor extends Interceptor {
 
   @override
   Future<dynamic> onRequest(RequestOptions options) async {
-    MasterPageController masterPageController = GetIt.I<MasterPageController>();
-    User user = await masterPageController.preferencesRepository.getUserPreferences();
+    MasterController masterController = GetIt.I<MasterController>();
+    User user = await masterController.preferencesRepository.getUserPreferences();
     if(user.id.isNotEmpty){
       final tokenHeader = {"X-Access-Token":"${user.id}"};
       options.headers.addAll(tokenHeader);

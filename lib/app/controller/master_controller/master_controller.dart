@@ -2,11 +2,11 @@ import 'package:mobx/mobx.dart';
 import 'package:teste_seventh/app/data/model/user.dart';
 import 'package:teste_seventh/app/data/repository/preferences_repository.dart';
 
-part 'master_page_controller.g.dart';
+part 'master_controller.g.dart';
 
-class MasterPageController = _MasterPageController with _$MasterPageController;
+class MasterController = _MasterController with _$MasterController;
 
-abstract class _MasterPageController with Store {
+abstract class _MasterController with Store {
 
   final PreferencesRepository preferencesRepository = PreferencesRepository();
 

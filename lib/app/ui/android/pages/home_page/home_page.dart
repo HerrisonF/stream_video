@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:teste_seventh/app/controller/homeController/homeController.dart';
-import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
+import 'package:teste_seventh/app/controller/home_controller/home_controller.dart';
+import 'package:teste_seventh/app/controller/master_controller/master_controller.dart';
 import 'package:teste_seventh/app/ui/android/components/video_player.dart';
 import 'package:teste_seventh/app/ui/android/pages/login_page/login_page.dart';
 
@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   final HomeController homeController = GetIt.I<HomeController>();
-  final MasterPageController masterController = GetIt.I<MasterPageController>();
+  final MasterController masterController = GetIt.I<MasterController>();
 
   @override
   void initState() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
+import 'package:teste_seventh/app/controller/master_controller/master_controller.dart';
 import 'package:teste_seventh/app/data/model/user.dart';
 import 'package:teste_seventh/app/data/repository/login_repository.dart';
 import 'package:teste_seventh/app/ui/android/pages/home_page/home_page.dart';
@@ -13,7 +13,7 @@ class LoginController = _LoginController with _$LoginController;
 abstract class _LoginController with Store {
 
   final LoginRepository loginRepository = LoginRepository();
-  final MasterPageController masterPageController = GetIt.I<MasterPageController>();
+  final MasterController masterController = GetIt.I<MasterController>();
 
   final TextEditingController emailEditingController = TextEditingController();
   final TextEditingController passwordEditingController =
@@ -65,8 +65,8 @@ abstract class _LoginController with Store {
       passwordEditingController.value.text,
     );
     if (user.id.isNotEmpty) {
-      masterPageController.setCurrentUser(user);
-      masterPageController.persistUser();
+      masterController.setCurrentUser(user);
+      masterController.persistUser();
       stopLoading();
       _pushToHome(context);
     }else{
