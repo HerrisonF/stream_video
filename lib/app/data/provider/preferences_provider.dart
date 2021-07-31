@@ -31,4 +31,14 @@ class PreferencesApiClient {
       return user;
     }
   }
+
+  removeUser() async {
+    User user = User();
+    try{
+      final prefs = await SharedPreferences.getInstance();
+      return await prefs.setString(_PREFS_USER_KEY, user.toString());
+    }catch(e){
+      print("ERROR REMOVING USER PREF $e");
+    }
+  }
 }

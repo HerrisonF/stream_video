@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:teste_seventh/app/controller/homeController/homeController.dart';
+import 'package:teste_seventh/app/controller/master_page_controller/master_page_controller.dart';
 import 'package:teste_seventh/app/ui/android/components/video_player.dart';
+import 'package:teste_seventh/app/ui/android/pages/login_page/login_page.dart';
 
 const String _FILENAME = 'bunny';
 
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   final HomeController homeController = GetIt.I<HomeController>();
+  final MasterPageController masterController = GetIt.I<MasterPageController>();
 
   @override
   void initState() {
@@ -21,8 +24,19 @@ class _HomePageState extends State<HomePage> {
     getVideoUrl();
   }
 
-  getVideoUrl() {
-    homeController.getVideoStream(_FILENAME);
+  getVideoUrl() async {
+    await homeController.getVideoStream(_FILENAME);
+    if(homeController.url.isEmpty){
+      masterController.removeUser();
+      _pushToLogin();
+    }
+  }
+
+  _pushToLogin(){
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
   }
 
   @override

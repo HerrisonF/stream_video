@@ -12,4 +12,8 @@ class PreferencesRepository {
   Future<User> getUserPreferences() async {
     return await preferencesApiClient.getUserPreferences();
   }
+
+  removeUser(){
+    preferencesApiClient.removeUser();
+  }
 }

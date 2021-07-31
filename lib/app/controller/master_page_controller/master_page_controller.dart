@@ -23,9 +23,12 @@ abstract class _MasterPageController with Store {
   }
 
   Future<bool> isUserLogged() async {
-    user = null;
     user = await preferencesRepository.getUserPreferences();
     return user.id.isNotEmpty;
+  }
+
+  removeUser(){
+    preferencesRepository.removeUser();
   }
 
 }
