@@ -1,10 +1,6 @@
-# Teste Seventh
-
-Projeto teste para [Seventh](https://www.seventh.com.br/)
-
 ## Stream de Video
 
- O fragmento de código, após o login, inicializa um player de vídeo que fora consumido por uma API da Seventh.
+ O fragmento de código, após o login, inicializa um player de vídeo que fora consumido por uma API.
  
  - Por se tratar de um app teste, a verificação de conexão não foi feita.
  - O App está funcional em Android e IOs nos emuladores
