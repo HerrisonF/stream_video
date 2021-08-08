@@ -1,3 +1,7 @@
+## APP
+
+![](https://i.imgur.com/6PDLbW9.gif)
+
 ## Stream de Video
 
  O fragmento de código, após o login, inicializa um player de vídeo que fora consumido por uma API.
@@ -14,10 +18,6 @@
 - PREFERENCES
 - CHEWIE
 - PROGRESS INDICATORS
-
-## APP
-
-![](https://i.imgur.com/6PDLbW9.gif)
 
 ### TroubleShoot
 
