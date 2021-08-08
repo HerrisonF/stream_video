@@ -1,5 +1,5 @@
-name: teste_seventh
-description: Teste para Seventh
+name: stream_video
+description: Stream Video
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 

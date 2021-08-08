@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:teste_seventh/app/controller/master_controller/master_controller.dart';
-import 'package:teste_seventh/app/data/model/user.dart';
-import 'package:teste_seventh/app/data/repository/login_repository.dart';
-import 'package:teste_seventh/app/ui/android/pages/home_page/home_page.dart';
+import 'package:stream_video/app/controller/master_controller/master_controller.dart';
+import 'package:stream_video/app/data/model/user.dart';
+import 'package:stream_video/app/data/repository/login_repository.dart';
+import 'package:stream_video/app/ui/android/pages/home_page/home_page.dart';
 
 part 'login_controller.g.dart';
 

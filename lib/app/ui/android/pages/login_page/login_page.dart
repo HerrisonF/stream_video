@@ -3,10 +3,10 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:progress_indicators/progress_indicators.dart';
-import 'package:teste_seventh/app/constants/assets.dart';
-import 'package:teste_seventh/app/constants/text_constants.dart';
-import 'package:teste_seventh/app/controller/login_controller/login_controller.dart';
-import 'package:teste_seventh/app/ui/theme/app_theme.dart';
+import 'package:stream_video/app/constants/assets.dart';
+import 'package:stream_video/app/constants/text_constants.dart';
+import 'package:stream_video/app/controller/login_controller/login_controller.dart';
+import 'package:stream_video/app/ui/theme/app_theme.dart';
 
 const MESSAGE_ERROR = "Esse campo é obrigatório";
 

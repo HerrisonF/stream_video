@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
-import 'package:teste_seventh/app/controller/master_controller/master_controller.dart';
-import 'package:teste_seventh/app/data/model/user.dart';
+import 'package:stream_video/app/controller/master_controller/master_controller.dart';
+import 'package:stream_video/app/data/model/user.dart';
 
 class HeadersInterceptor extends Interceptor {
   final log = Logger("HeadersInterceptor");

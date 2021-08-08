@@ -1,5 +1,5 @@
-import 'package:teste_seventh/app/data/model/user.dart';
-import 'package:teste_seventh/app/data/provider/login_provider.dart';
+import 'package:stream_video/app/data/model/user.dart';
+import 'package:stream_video/app/data/provider/login_provider.dart';
 
 class LoginRepository {
 

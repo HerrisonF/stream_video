@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:teste_seventh/app/data/model/user.dart';
-import 'package:teste_seventh/app/data/repository/preferences_repository.dart';
+import 'package:stream_video/app/data/model/user.dart';
+import 'package:stream_video/app/data/repository/preferences_repository.dart';
 
 part 'master_controller.g.dart';
 

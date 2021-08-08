@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:logging/logging.dart';
 
-import 'package:teste_seventh/app/data/http/dio_interception_headers.dart';
-import 'package:teste_seventh/app/data/http/dio_state.dart';
+import 'package:stream_video/app/data/http/dio_interception_headers.dart';
+import 'package:stream_video/app/data/http/dio_state.dart';
 
 class DioClient {
   Dio instance;

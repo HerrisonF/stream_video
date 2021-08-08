@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import 'package:teste_seventh/app/data/repository/home_repository.dart';
+import 'package:stream_video/app/data/repository/home_repository.dart';
 
 part 'home_controller.g.dart';
 

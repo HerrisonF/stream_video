@@ -1,4 +1,4 @@
-import 'package:teste_seventh/app/data/provider/home_provider.dart';
+import 'package:stream_video/app/data/provider/home_provider.dart';
 
 class HomeRepository {
 

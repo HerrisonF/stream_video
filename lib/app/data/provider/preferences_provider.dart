@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:teste_seventh/app/data/model/user.dart';
+import 'package:stream_video/app/data/model/user.dart';
 
 const _PREFS_USER_KEY = "USER_KEY";
 

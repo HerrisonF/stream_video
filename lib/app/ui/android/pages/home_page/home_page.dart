@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:teste_seventh/app/controller/home_controller/home_controller.dart';
-import 'package:teste_seventh/app/controller/master_controller/master_controller.dart';
-import 'package:teste_seventh/app/ui/android/components/video_player.dart';
-import 'package:teste_seventh/app/ui/android/pages/login_page/login_page.dart';
+import 'package:stream_video/app/controller/home_controller/home_controller.dart';
+import 'package:stream_video/app/controller/master_controller/master_controller.dart';
+import 'package:stream_video/app/ui/android/components/video_player.dart';
+import 'package:stream_video/app/ui/android/pages/login_page/login_page.dart';
 
 const String _FILENAME = 'bunny';
 
@@ -26,10 +26,10 @@ class _HomePageState extends State<HomePage> {
 
   getVideoUrl() async {
     await homeController.getVideoStream(_FILENAME);
-    if(homeController.url.isEmpty){
-      masterController.removeUser();
-      _pushToLogin();
-    }
+    // if(homeController.url.isEmpty){
+    //   masterController.removeUser();
+    //   _pushToLogin();
+    // }
   }
 
   _pushToLogin(){

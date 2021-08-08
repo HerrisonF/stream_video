@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:teste_seventh/app/constants/assets.dart';
-import 'package:teste_seventh/app/controller/master_controller/master_controller.dart';
-import 'package:teste_seventh/app/ui/android/pages/home_page/home_page.dart';
-import 'package:teste_seventh/app/ui/android/pages/login_page/login_page.dart';
-import 'package:teste_seventh/app/ui/theme/app_theme.dart';
+import 'package:stream_video/app/constants/assets.dart';
+import 'package:stream_video/app/controller/master_controller/master_controller.dart';
+import 'package:stream_video/app/ui/android/pages/home_page/home_page.dart';
+import 'package:stream_video/app/ui/android/pages/login_page/login_page.dart';
+import 'package:stream_video/app/ui/theme/app_theme.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,7 +13,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   final MasterController masterController = GetIt.I<MasterController>();
 
   @override
@@ -28,19 +27,21 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         color: appThemeData.backgroundColor,
         child: Center(
-          child: SvgPicture.asset(logo, height: 40,width: 40,),
+          child: Image(
+            image: AssetImage(logo),
+          ),
         ),
       ),
     );
   }
 
   _isUserLogged() async {
-    bool isUserLogged = await masterController.isUserLogged();
-    if(isUserLogged){
-      _pushToHome();
-    }else{
-      _pushToLogin();
-    }
+    // bool isUserLogged = await masterController.isUserLogged();
+    // if(isUserLogged){
+    _pushToHome();
+    // }else{
+    //   _pushToLogin();
+    // }
   }
 
   _pushToHome() {
