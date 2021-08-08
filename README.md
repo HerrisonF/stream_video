@@ -1,6 +1,7 @@
 ## APP
 
 
+![](https://i.imgur.com/g0Jiiwns.gif)
 
 ## Stream de Video
 
@@ -13,9 +14,7 @@
 
 - MOBX + GETIT
 - DIO
-- SVG
 - VIDEO PLAYER
-- PREFERENCES
 - CHEWIE
 - PROGRESS INDICATORS
 
