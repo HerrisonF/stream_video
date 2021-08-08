@@ -1,7 +1,7 @@
 ## APP
 
 
-![](https://i.imgur.com/g0Jiiwns.gif)
+![](https://i.imgur.com/g0Jiiwn.gif)
 
 ## Stream de Video
 
