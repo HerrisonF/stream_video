@@ -1,6 +1,6 @@
 ## APP
 
-![](https://i.imgur.com/6PDLbW9.gif)
+
 
 ## Stream de Video
 
